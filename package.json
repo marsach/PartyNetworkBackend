@@ -1,0 +1,12 @@
+{
+  "name": "node-rest-jwt",
+  "main": "server.js",
+  "dependencies": {
+    "body-parser": "^1.14.2",
+    "cookie-parser": "^1.4.3",
+    "express": "^4.13.3",
+    "jsonwebtoken": "^5.5.0",
+    "mongoose": "^4.3.4",
+    "morgan": "^1.6.1"
+  }
+}
