@@ -6,7 +6,7 @@ var mongoose = require('mongoose');
 var cookieParser = require('cookie-parser')
 
 var jwt = require('jsonwebtoken'); // used to create, sign, and verify tokens
-var config = require('./config_sample'); // get our config file
+var config = require('./config'); // get our config file
 var User = require('./app/models/user'); // get our User model
 var Group = require('./app/models/group'); // get our Group model
 var PublicGroupOwner = require('./app/models/publicGroupMember'); // get our PublicGroup model
@@ -44,8 +44,7 @@ function checkBodyParams(req, res) {
                 "data": {}
             });
             throw 'Bad params';
-        }
-        ;
+        };
     }
 }
 
@@ -53,7 +52,7 @@ function checkBodyParams(req, res) {
 
 
 // Route for Authentication (POST http://localhost:8080/api/auth)
-apiRoutes.post('/auth', function (req, res) {
+apiRoutes.post('/auth/login', function (req, res) {
 
     // find the user
     User.findOne({
@@ -96,11 +95,6 @@ apiRoutes.post('/auth', function (req, res) {
                     }
                 });
 
-                res.json({
-                    success: true,
-                    message: 'You are now authenticated!',
-                    token: token
-                });
             }
 
         }
@@ -200,7 +194,7 @@ apiRoutes.post('/auth/register', function (req, res) {
 
 
 // Apply our defines routes to this endpoint
-app.use('/api', apiRoutes);
+app.use('/rest', apiRoutes);
 
 
 // Populate the mongodb database with our admin user
